@@ -1,0 +1,58 @@
+body {
+    background-color: #f0f2f5;
+    font-family: 'Microsoft YaHei', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background-color 1s ease;
+}
+
+.container {
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.cake {
+    font-size: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cake:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.hidden {
+    display: none;
+}
+
+.wish-text {
+    font-size: 1.2rem;
+    color: #e91e63;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
