@@ -1,58 +1,71 @@
-body {
-    background-color: #f0f2f5;
+:root {
+    --primary-pink: #ff85a2;
+    --dark-pink: #f06292;
+    --soft-yellow: #fff9db;
+}
+
+body, html {
+    margin: 0; padding: 0; height: 100%;
     font-family: 'Microsoft YaHei', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    transition: background-color 1s ease;
+    overflow: hidden; background: #fff5f7;
 }
 
-.container {
-    text-align: center;
+.scene {
+    display: none; width: 100%; height: 100%;
+    position: absolute; justify-content: center; align-items: center;
+    flex-direction: column; text-align: center;
 }
 
-.card {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    max-width: 400px;
+.active { display: flex; animation: fadeIn 1s forwards; }
+
+.hidden { display: none !important; }
+
+/* 第一幕背景 */
+#scene1 {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bg.jpg') center/cover;
+    color: white; cursor: pointer;
 }
 
-.cake {
-    font-size: 80px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.quiz-card {
+    background: white; color: #333; padding: 30px;
+    border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 80%; max-width: 400px;
 }
 
-.cake:hover {
-    transform: scale(1.1) rotate(5deg);
+.option-btn {
+    display: block; width: 100%; margin: 10px 0; padding: 12px;
+    border: 2px solid var(--primary-pink); border-radius: 25px;
+    background: white; cursor: pointer; transition: 0.3s;
 }
 
-.hidden {
-    display: none;
+.option-btn:hover { background: var(--primary-pink); color: white; }
+
+/* 蛋糕动画样式 */
+.cake { position: relative; width: 200px; height: 200px; margin-top: 50px; cursor: pointer; }
+.layer { position: absolute; border-radius: 50% / 20px; border: 2px solid #e1b1b1; }
+.layer-bottom { width: 200px; height: 60px; bottom: 0; background: #fbd5d5; }
+.layer-middle { width: 160px; height: 50px; bottom: 30px; left: 20px; background: #ffebef; }
+.layer-top { width: 120px; height: 40px; bottom: 60px; left: 40px; background: #fff; }
+.candle { width: 8px; height: 40px; background: #ff4d4d; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); border-radius: 4px; }
+.flame { width: 12px; height: 20px; background: #ffaa00; position: absolute; top: -20px; left: -2px; border-radius: 50% 50% 20% 20%; animation: flicker 0.1s infinite alternate; }
+
+@keyframes flicker { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.2); opacity: 1; } }
+
+/* 信封动画样式 */
+.envelope-wrapper { position: relative; width: 250px; height: 180px; background: #f3cf7a; cursor: pointer; }
+.envelope-wrapper::after {
+    content: ""; position: absolute; top: 0; left: 0;
+    border-left: 125px solid transparent; border-right: 125px solid transparent;
+    border-top: 100px solid #e1b452; transition: 0.5s; transform-origin: top;
+}
+.open.envelope-wrapper::after { transform: rotateX(180deg); }
+
+/* 结尾发光文字 */
+.glow-text {
+    font-size: 2.5rem; color: var(--primary-pink);
+    text-shadow: 0 0 10px rgba(255,133,162,0.5);
+    animation: pulse 2s infinite;
 }
 
-.wish-text {
-    font-size: 1.2rem;
-    color: #e91e63;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    animation: fadeIn 2s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-button {
-    background-color: #ff4081;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
